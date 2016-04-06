@@ -73,9 +73,15 @@ Template.wall.events({
     }
   },
 
+  "click button.circle": function () {
+    Session.set("stroke","circle");
+  },
 
+  "click button.line": function () {
+    Session.set("stroke","line");
+  },
 
-})
+});
 
 var markPoint = function() {
 
@@ -85,46 +91,33 @@ var markPoint = function() {
 // This means the line gets drawn to the top left of the screen
 // Which is annoying, so we test for this and stop it happening.
 
-      if (lastX==0) {// check that x was something not top-left. should probably set this to -1
+      if (lastX===0) {// check that x was something not top-left. should probably set this to -1
         lastX = (event.pageX - offset.left);
         lastY = (event.pageY - offset.top);
       }
-      points.insert({
-        //this draws a point exactly where you click the mouse
-      // x: (event.pageX - offset.left),
-      // y: (event.pageY - offset.top)});
+      if (Session.get("stroke") === "circle") {
+        points.insert({
+          circleX: (event.pageX - offset.left),
+          circleY: (event.pageY - offset.top),
+          w: thickness,
+          c: strokeColor,
+        });
+      }else if (Session.get("stroke") === "line") {
+        points.insert({
+          lineX: (event.pageX - offset.left),
+          lineY: (event.pageY - offset.top),
+          lineX1: lastX,
+          lineY1: lastY,
+          w: thickness,
+          c: strokeColor,
+        });
+      }
 
-
-        //We can do more interesting stuff
-        //We need to input data in the right format
-        //Then we can send this to d3 for drawing
-
-
-        //1) Algorithmic mouse follower
-      // x: (event.pageX - offset.left)+(Math.cos((event.pageX/10  ))*30),
-      // y: (event.pageY - offset.top)+(Math.sin((event.pageY)/10)*30)});
-
-        //2) draw a line - requires you to change the code in drawing.js
-        x: (event.pageX - offset.left),
-        y: (event.pageY - offset.top),
-        x1: lastX,
-        y1: lastY,
-        // We could calculate the line thickness from the distance
-        // between current position and last position
-        //w: 0.05*(Math.sqrt(((event.pageX - offset.left)-lastX) * (event.pageX - offset.left)
-        //  + ((event.pageY - offset.top)-lastY) * (event.pageY - offset.top))),
-        // Or we could just set the line thickness using buttons and variable
-        w: thickness,
-        // We can also use strokeColor, defined by a selection
-        c: strokeColor,
-
-
-      }); // end of points.insert()
 
         lastX = (event.pageX - offset.left);
         lastY = (event.pageY - offset.top);
 
-}
+};
 
 Template.canvas.events({
   'click': function (event) {
