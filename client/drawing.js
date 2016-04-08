@@ -4,8 +4,8 @@ Canvas = function () {
 
   var createSvg = function() {
     svg = d3.select('#canvas').append('svg')
-      .attr('width', 800)
-      .attr('height',600);
+    .attr("width","980")
+    .attr("height","500px");
   };
   createSvg();
 
@@ -13,6 +13,34 @@ Canvas = function () {
     d3.select('svg').remove();
     createSvg();
   };
+
+  self.save = function () {
+      var html = d3.select("svg")
+      .attr("version", 1.1)
+      .attr("xmlns", "http://www.w3.org/2000/svg")
+      .node().parentNode.innerHTML;
+      // console.log(html
+      var width = $(svg)[0][0].getBoundingClientRect().width;
+      var height = $(svg)[0][0].getBoundingClientRect().height;
+      var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+      var img = '<img src="'+imgsrc+'">';
+      var canvas = document.querySelector("canvas");
+      canvas.width = width;
+      canvas.height = height;
+	    var context = canvas.getContext("2d");
+      var image = new Image;
+      image.src = imgsrc;
+
+
+  	  var canvasdata = canvas.toDataURL("image/png");
+
+  	  var pngimg = '<img src="'+canvasdata+'">';
+      context.drawImage(image,0,0,width,height);
+  	  var a = document.createElement("a");
+  	  a.download = "sample.png";
+  	  a.href = canvasdata;
+  	  a.click();
+    };
 
   self.draw = function(data) {
     if (data.length < 1) {
@@ -41,7 +69,7 @@ Canvas = function () {
           .attr('y2', function (d) { return d.lineY1; })
           .attr("stroke-width", function (d) { return d.w; })
           .attr("stroke", function (d) { return d.c; })
-          .attr("fill", function (d) { return d.c})
+          .attr("fill", function (d) { return d.c;})
           .attr("stroke-linejoin", "round");
         }
 
