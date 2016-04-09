@@ -23,3 +23,4 @@ twbs:bootstrap
 risul:bootstrap-colorpicker
 kidovate:bootstrap-slider
 maxharris9:meteor-bootstrap-slider
+iron:router

@@ -1,51 +1,11 @@
-<head>
-    <title>1-wall</title>
-</head>
+<template name="ApplicationLayout">
+  <head>
+      <title>1-wall</title>
+  </head>
 
 <body>
   <div class="container-fluid">
-    {{> wall}}
+      {{> yield}}
   </div>
-  <div id="slider"></div>
-
 </body>
-
-<template name="wall">
-
-    <div class="row">
-        <div class="col-md-9">
-            <h1>{{title}}</h1>
-            {{> canvas}}
-        </div>
-        <div class="col-md-2">
-            <div id="cp2" class="input-group colorpicker-component">
-                <input type="text" value="#00AABB" class="form-control" />
-                <span class="input-group-addon"><i></i></span>
-                {{getColor}}
-            </div>
-            <button class="clear">Clear</button>
-            <!-- <button class='thicker'>Thicker</button>
-            <button class='thinner'>Thinner</button> -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <input id="ex1" data-slider-id="ex1Slider" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="5"/>
-            <button class="circle">Circle</button>
-            <button class="line">Line</button>
-            <button class="save">Save</button>
-        </div>
-    </div>
-
-
-</template>
-
-<template name="canvas">
-    <div id="canvas"></div>
-    <canvas></canvas>
 </template>

@@ -1,6 +1,15 @@
 points = new Meteor.Collection('pointsCollection');
 var canvas;
 
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
+Router.route('/',function () {
+  this.render("home");
+});
+Router.route("/drawing",function () {
+  this.render("wall");
+});
 // we use these for drawing more interesting shapes
 var lastX = 0;
 var lastY = 0;
@@ -30,6 +39,8 @@ Template.wall.rendered = function() {
     $("#ex1").slider().on('slide',function (ev) {
       thickness = ev.value;
     });
+    document.getElementsByClassName("clear")[0].click();
+    document.getElementsByClassName("line")[0].click();
 };
 
 Template.wall.events({
@@ -44,20 +55,6 @@ Template.wall.events({
     },
 
     //choose a color. Initialise the last vals, otherwise a stray line will appear.
-
-
-    "click button.thicker": function() {
-
-        thickness += 1;
-
-    },
-
-    "click button.thinner": function() {
-
-        if (thickness > 0) {
-            thickness -= 1;
-        }
-    },
 
     "click button.circle": function(event) {
         Session.set("stroke", "circle");

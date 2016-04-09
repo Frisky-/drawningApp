@@ -4,10 +4,9 @@ Canvas = function () {
 
   var createSvg = function() {
     svg = d3.select('#canvas').append('svg')
-    .attr("width","980")
+    .attr("width","980px")
     .attr("height","500px");
   };
-  createSvg();
 
   self.clear = function() {
     d3.select('svg').remove();
@@ -30,16 +29,21 @@ Canvas = function () {
 	    var context = canvas.getContext("2d");
       var image = new Image;
       image.src = imgsrc;
+      image.onload = function() {
+    	  context.drawImage(image, 0, 0,width,height);
+    	  var canvasdata = canvas.toDataURL("image/png");
 
-
-  	  var canvasdata = canvas.toDataURL("image/png");
-
-  	  var pngimg = '<img src="'+canvasdata+'">';
-      context.drawImage(image,0,0,width,height);
-  	  var a = document.createElement("a");
-  	  a.download = "sample.png";
-  	  a.href = canvasdata;
-  	  a.click();
+    	  var a = document.createElement("a");
+        var name = $("#imageName").val();
+        if(name){
+          a.download = name + ".png";
+        }else{
+          a.download = "sample.png";
+        }
+    	  a.href = canvasdata;
+        $("#myModal").modal("hide");
+    	  a.click();
+      };
     };
 
   self.draw = function(data) {

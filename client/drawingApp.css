@@ -1,9 +1,54 @@
+body{
+  position:relative;
+}
+.home{
+    min-height: 100vh;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.drawing{
+    min-height: 100vh;
+    background-image: url("simple-red-background-patterns.jpg");
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.drawing h4{
+  color:#AEC3C2;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+@media (min-width: 768px){
+.header-content {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 0 50px;
+    }
+}
+.header-content-inner{
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header-content-inner h1{
+  color:white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.header-content-inner p{
+  color:#AEC3C2;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 #canvas{
   width: 100%;
   height:500px;
 }
 svg{
   border: 3px solid black;
+  background-color:white;
 }
 circle{
   vector-effect: non-scaling-stroke;
@@ -18,4 +63,11 @@ line{
 canvas{
   width: 100%;
   height: 100%;
+}
+.modal-body input {
+  width: 100%;
+}
+.button-icons{
+  width:15px;
+  height: 15px;
 }

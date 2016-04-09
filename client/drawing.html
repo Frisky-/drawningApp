@@ -1,0 +1,59 @@
+<template name="wall">
+
+    <div class="row drawing">
+        <div class="col-md-9">
+            <h1>{{title}}</h1>
+            {{> canvas}}
+        </div>
+        <div class="col-md-2">
+          <div class="color-picker">
+            <h4>Select a color</h4>
+            <div id="cp2" class="input-group colorpicker-component">
+                <input type="text" value="#00AABB" class="form-control" />
+                <span class="input-group-addon"><i></i></span>
+            </div>
+          </div>
+          <div class="strokes">
+            <h4>Select a stroke</h4>
+            <button class="circle"><img class="button-icons" src="triad-of-three-circles-strokes.png" alt="circle" /></button>
+            <button class="line"><img class="button-icons" src="pencil-striped-outlined-tool-in-diagonal-position.png" alt="line" /></button>
+          </div>
+          <div class="stroke-width">
+            <h4>Select stroke width</h4>
+            <input id="ex1" data-slider-id="ex1Slider" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="5"/>
+          </div>
+          <div class="clear-button">
+            <h4>Clear</h4>
+            <button class="clear"><img class="button-icons" src="eraser-outline.png" alt="clear" /></button>
+          </div>
+          <div class="save-button">
+            <h4>Save the image</h4>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Save</button>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Save as</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input id="imageName" type="text" name="imageName">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary save">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+</template>
+
+<template name="canvas">
+    <div id="canvas"></div>
+    <canvas style="display: none;"></canvas>
+</template>
